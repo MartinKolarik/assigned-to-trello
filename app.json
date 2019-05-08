@@ -29,6 +29,10 @@
     "TRELLO_MEMBER_TOKEN": {
       "description": "The Trello member token. Run `bundle exec rake trello_token` to retrieve.",
       "required": true
+    },
+    "TRELLO_MEMBER": {
+      "description": "Cards will be assigned to this member.",
+      "required": true
     }
   },
   "repository": "https://github.com/benbalter/assigned-to-trello"

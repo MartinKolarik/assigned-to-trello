@@ -31,6 +31,11 @@ class AssignedToTrello
   end
   memoize :list
 
+  def member
+    Trello::Member.find(ENV['TRELLO_MEMBER'])
+  end
+  memoize :member
+
   def find_card_by_issue(issue)
     cards.find do |card|
       card.attachments.any? do |attachment|
@@ -43,6 +48,7 @@ class AssignedToTrello
     Trello.logger.debug "Creating card for #{issue.title}"
     card = Trello::Card.create(name: issue.title, list_id: list.id)
     card.add_attachment issue.html_url, issue.html_url
+    card.add_member member
     card
   end
 
