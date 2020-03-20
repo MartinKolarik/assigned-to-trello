@@ -57,6 +57,7 @@ class AssignedToTrello
     issues.each do |issue|
       next if issue.title =~ /^Nagios/
       next if find_card_by_issue(issue)
+      next if ENV['IGNORE_REPO_OWNERS'] and ENV['IGNORE_REPO_OWNERS'].split(',').include? issue.repository.owner.login
       create_card_from_issue(issue)
     end
   end
